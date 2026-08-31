@@ -5,18 +5,18 @@ namespace Service;
 
 public class PetService : IPetService
 {
-    private readonly PetShopDb _infrastructureClass;
+    private readonly PetShopDb db;
 
-    public PetService(PetShopDb infrastructureClass)
+    public PetService(PetShopDb db)
     {
         Console.WriteLine("Service has been instantiated");
-        _infrastructureClass = infrastructureClass;
+        this.db = db;
     }
 
 
     public List<Pet> GetPets()
     {
-        return _infrastructureClass.MyPets;
+        return db.Pets().ToList();
     }
 }
 

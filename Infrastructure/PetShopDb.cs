@@ -4,7 +4,7 @@ using LinqToDB.Mapping;
 
 namespace Infrastructure;
 
-public class PetShopDb : DataConnection
+public class PetShopDb(DataOptions<PetShopDb> dataOptions) : DataConnection(dataOptions.Options)
 {
     public ITable<Pet> Pets()
     {
