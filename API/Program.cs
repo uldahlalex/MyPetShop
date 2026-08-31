@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Service;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
-builder.Services.AddScoped<IPetService,PetService>();
 builder.Services.AddSingleton<MyInfrastructureClass>();
+builder.Services.AddScoped<IPetService,PetService>();
+builder.Services.AddControllers();
 var app = builder.Build();
 app.MapControllers();
 app.Run();
