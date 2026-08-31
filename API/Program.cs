@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Service;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSingleton<MyInfrastructureClass>();
+builder.Services.AddSingleton<PetShopDb>();
 builder.Services.AddScoped<IPetService,PetService>();
 builder.Services.AddControllers();
 var app = builder.Build();

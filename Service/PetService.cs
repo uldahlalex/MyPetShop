@@ -5,9 +5,9 @@ namespace Service;
 
 public class PetService : IPetService
 {
-    private readonly MyInfrastructureClass _infrastructureClass;
+    private readonly PetShopDb _infrastructureClass;
 
-    public PetService(MyInfrastructureClass infrastructureClass)
+    public PetService(PetShopDb infrastructureClass)
     {
         Console.WriteLine("Service has been instantiated");
         _infrastructureClass = infrastructureClass;
