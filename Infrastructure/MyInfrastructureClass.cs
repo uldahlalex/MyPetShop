@@ -1,11 +1,14 @@
-﻿namespace Infrastructure;
+﻿using LinqToDB.Mapping;
+
+namespace Infrastructure;
 
 public class MyInfrastructureClass
 {
-    public MyInfrastructureClass()
-    {
-        Console.WriteLine("Infrastructure has been instantiated");
-    }
-    
-    public List<object> MyPets = new List<object>();
+  
+}
+
+public class Pet
+{
+    [PrimaryKey]public string Id { get; set; }
+    public string Name { get; set; }
 }

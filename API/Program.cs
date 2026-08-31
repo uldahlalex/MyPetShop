@@ -13,7 +13,7 @@ public class MyPetshopController(IPetService petService) : ControllerBase
 {
     
     [HttpGet(nameof(GetPets))]
-    public List<object> GetPets()
+    public List<Pet> GetPets()
     {
         return petService.GetPets();
     }

@@ -14,7 +14,7 @@ public class PetService : IPetService
     }
 
 
-    public List<object> GetPets()
+    public List<Pet> GetPets()
     {
         return _infrastructureClass.MyPets;
     }
@@ -22,5 +22,5 @@ public class PetService : IPetService
 
 public interface IPetService
 {
-    public List<object> GetPets();
+    public List<Pet> GetPets();
 }
