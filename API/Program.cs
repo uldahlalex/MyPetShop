@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Service;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSingleton<PetShopDb>();
 builder.Services.AddScoped<IPetService,PetService>();
 builder.Services.AddControllers();
 
@@ -15,14 +14,31 @@ var dataOptions = new DataOptions<PetShopDb>(options);
 builder.Services.AddScoped<PetShopDb>(_ => new PetShopDb(dataOptions));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    scope
+        .ServiceProvider
+        .GetRequiredService<PetShopDb>()
+        .CreateTable<Pet>(tableOptions:TableOptions.CreateIfNotExists);
+}
+
 app.MapControllers();
+
+
 app.Run();
-public class MyPetshopController(IPetService petService) : ControllerBase
+public class MyPetshopController(IPetService petService, PetShopDb db) : ControllerBase
 {
     
     [HttpGet(nameof(GetPets))]
     public List<Pet> GetPets()
     {
+        var pet = new Pet()
+        {
+            Id = "lkdsjflkdsf"+new Random().Next(),
+            Name = "Bob"
+        };
+        db.Insert(pet);
         return petService.GetPets();
     }
 }
